@@ -1,5 +1,18 @@
 <!DOCTYPE html>
 <html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Press+Start+2P&display=swap" rel="stylesheet">
+<title>Pattern</title>
+<style>
+* {
+font-family: 'Press Start 2P', cursive;
+line-height: 2;
+}
+#demo {
+font-size: 9px;
+}
+</style>
+</head>
 <body>
 
 <h2 id="title">Pattern</h2>
@@ -11,7 +24,7 @@
 setInterval(myTimer, 1);
 document.getElementById("demo").style.width = "99%";
 function myTimer() {
-var z = document.getElementById("demo").innerHTML + document.getElementById("demo").innerHTML.length + " &#xA0;";
+var z = document.getElementById("demo").innerHTML + document.getElementById("demo").innerHTML.length + " ";
 document.getElementById("demo").innerHTML = z;
 document.getElementById("title").innerHTML = document.getElementById("demo").innerHTML.length + " characters &#xA0;&#xA0;&#xA0;&#xA0;Each number shows the number of characters there were when it was written";
 
