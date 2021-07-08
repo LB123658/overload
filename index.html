@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Press+Start+2P&display=swap" rel="stylesheet">
-<title>Pattern</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&display=swap" rel="stylesheet">      
+<title>Characters Pattern</title>
 <style>
 * {
-font-family: 'Press Start 2P', cursive;
-line-height: 2;
-}
-#demo {
-font-size: 9px;
+font-family: 'Fira Code', monospace;
 }
 </style>
 </head>
@@ -26,7 +22,7 @@ document.getElementById("demo").style.width = "99%";
 function myTimer() {
 var z = document.getElementById("demo").innerHTML + document.getElementById("demo").innerHTML.length + " ";
 document.getElementById("demo").innerHTML = z;
-document.getElementById("title").innerHTML = document.getElementById("demo").innerHTML.length + " characters &#xA0;&#xA0;&#xA0;&#xA0;Each number shows the number of characters there were when it was written";
+document.getElementById("title").innerHTML = document.getElementById("demo").innerHTML.length + " characters<br>Each number shows the number of characters there were when it was written";
 
 var myDiv = document.getElementById("demo");
 myDiv.scrollTop = myDiv.scrollHeight;
