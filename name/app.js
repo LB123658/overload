@@ -31,3 +31,10 @@ if (navigator.platform.slice(0, 3) == "Mac") {
 } else {
   document.getElementById("demo").innerHTML = "Your name could not be found because you are using a " + navigator.platform + " computer.";
 }
+
+//download option
+if (window.location.href.split(".github")[0] == "https://lb123658") {
+    alert("Download this page for it to work.");
+} else {
+    ;
+}
