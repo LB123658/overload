@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<title>Lines pattern</title>
+<style>
+button {
+height: 7px;
+border: none;
+background: white;
+margin-right: 90%;
+}
+#div {
+position: absolute;
+top: 50%;
+left: 50%;
+width: 500px;
+height: 500px;
+margin-left: -250px;
+margin-top: -250px;
+overflow-x: hidden;
+overflow-y: auto;
+transform: rotate(270deg);
+line-height: 0;
+background: red;
+border: 7px solid red;
+cursor: none;
+transition: transform 0.7s;
+}
+#div button {
+cursor: none;
+}
+#div:hover {
+transform: rotate(360deg);
+}
+::-webkit-scrollbar {
+display: none;
+}
+</style>
+<body>
+<div id="div"></div>
+<script>
+var div = document.getElementById("div");
+
+setInterval(graph, 100);
+function graph() {
+var random = Math.floor(Math.random() * 100);
+var b = document.createElement("button");
+b.style.width = random + "%";
+div.appendChild(b);
+div.scrollTop = div.scrollHeight;
+}
+</script>
+
+</body>
+</html>
