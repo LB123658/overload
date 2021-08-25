@@ -107,8 +107,10 @@ float: left;
 <button onclick="more()" title="Create uphill"><span class="material-icons" style="color:green">north</span>UPHILL</button>
 
 <br><br>
-<button onclick="link()" title="Get a link to your animation"><span class="material-icons" style="color:green">link</span>GET LINK</button>
-<button onclick="saveFot(landscapeCode, text/html)" title="Download animation"><span class="material-icons" style="color:green">download</span>DOWNLOAD</button>
+<button onclick="openWin()" title="Open your animation in new tab"><span class="material-icons" style="color:green">launch</span>PREVIEW</button>
+
+<button onclick="saveFile(landscapeCode, 'landscape project')" title="Download animation"><span class="material-icons" style="color:green">download</span>DOWNLOAD</button>
+
 <button onclick="share()"title="Share this page"><span class="material-icons" style="color:green">share</span> SHARE</button>
 <button onclick="location.reload()" title="New animation"><span class="material-icons" style="color:green">refresh</span> RELOAD</button>
 </div>
@@ -144,41 +146,36 @@ div.scrollTop = div.scrollHeight;
 function stop() {
 clearInterval(g);
 }
-function link() {
-var projectUrl = "data:text/html,<!DOCTYPE html><html><title>Personal Landscape Project</title><head>" + document.head.innerHTML.replace(/\n/g,"");
- + "</head><body><a href='https://lb123658.github.io/pattern/design' target='_blank'>LANDSCAPE DESIGN</a><div id='div'>" + div.innerHTML + "</div></body></html>";
-window.open(projectUrl, "_blank");
-}
 function share() {
-window.open("mailto:?title=Online Landscape Design&body=Create computer generated hills and mountains with this website. Try it out at lb123658.github.io/pattern/design.", "_blank");
+window.open("mailto:?title=Online Landscape Design&body=Create computer generated hills and mountains with this website. Try it out at lb123658.github.io/pattern/design. See my project at the following website:", "_blank");
 }
-var landscapeCode = "<!DOCTYPE html><html><title>Personal Landscape Project</title><head>" + document.head.innerHTML.replace(/\n/g,"");
- + "</head><body><a href='https://lb123658.github.io/patterns/design' target='_blank'>LANDSCAPE DESIGN</a><div id='div'>" + div.innerHTML + "</div></body></html>";
 
-function saveFot(textToWrite, fileNameToSaveAs)
-    {
-    	var textFileAsBlob = new Blob([textToWrite], {type: file.value}); 
-    	var downloadLink = document.createElement("a");
-    	downloadLink.download = fileNameToSaveAs;
-    	downloadLink.innerHTML = "Download File";
-    	if (window.webkitURL != null)
-    	{
-    		// Chrome allows the link to be clicked
-    		// without actually adding it to the DOM.
-    		downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
-    	}
-    	else
-    	{
-    		// Firefox requires the link to be added to the DOM
-    		// before it can be clicked.
-    		downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-    		downloadLink.onclick = destroyClickedElement;
-    		downloadLink.style.display = "none";
-    		document.body.appendChild(downloadLink);
-    	}
-    
-    	downloadLink.click();
-} 
+function openWin() {
+  var landscapeCode = "<!DOCTYPE html><html><title>Personal Landscape Project</title><head>" + document.head.innerHTML.replace(/\n/g,"") + "</head><body><a href='https://lb123658.github.io/pattern/design' target='_blank'>LANDSCAPE DESIGN</a><div id='div'>" + div.innerHTML + "</div></body></html>";
+  myWindow = window.open("myWindow");
+  myWindow.document.write(landscapeCode);
+}
+
+function saveFile(textToWrite, fileNameToSaveAs) {
+var landscapeCode = "<!DOCTYPE html><html><title>Personal Landscape Project</title><head>" + document.head.innerHTML.replace(/\n/g,"") + "</head><body><a href='https://lb123658.github.io/pattern/design' target='_blank'>LANDSCAPE DESIGN</a><div id='div'>" + div.innerHTML + "</div></body></html>";
+
+var textFileAsBlob = new Blob([textToWrite], {
+type:'text/html'}
+);
+var downloadLink = document.createElement("a");
+downloadLink.download = fileNameToSaveAs;
+downloadLink.innerHTML = "Download File";
+if (window.webkitURL != null) {
+downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+}
+else {
+downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+downloadLink.onclick = destroyClickedElement;
+downloadLink.style.display = "none";
+document.body.appendChild(downloadLink);
+}
+downloadLink.click();
+}
 </script>
 </body>
 </html>
