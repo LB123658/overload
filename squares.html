@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sqaure pattern</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200&display=swap" rel="stylesheet">
+</head>
+<style>
+* {
+font-family: 'Heebo', sans-serif;
+}
+button {
+height: 7px;
+border: none;
+background: white;
+margin: 5px;
+}
+#div {
+position: absolute;
+top: 50%;
+left: 50%;
+width: 500px;
+height: 500px;
+margin-left: -250px;
+margin-top: -250px;
+overflow-x: hidden;
+overflow-y: auto;
+line-height: 0;
+background: red;
+border: 7px solid red;
+cursor: none;
+transition: transform 0.7s, filter 0.7s;
+transform: rotate(270deg) scale(1);
+animation: load 2s;
+}
+#div button {
+cursor: none;
+}
+#div:hover {
+transform: rotate(360deg) scale(1);
+}
+::-webkit-scrollbar {
+display: none;
+}
+@keyframes load {
+0% {filter: blur(10px); transform: rotate(270deg) scale(0.5);}
+100% {filter: blur(0px); transform: rotate(270deg) scale(1);}
+}
+a {
+font-size: 25px;
+text-decoration: none;
+color: black;
+font-weight: bold;
+position: absolute;
+top: 20px;
+left: 20px;
+transition: transform 0.15s;
+}
+a:hover {
+transform: scale(1.09);
+text-decoration: underline;
+}
+</style>
+<body>
+<a href="#" onclick="done()">SQUARE PATTERN</a>
+<div id="div"></div>
+<script>
+var div = document.getElementById("div");
+
+setInterval(graph, 100);
+function graph() {
+var random = Math.floor(Math.random() * 200);
+var b = document.createElement("button");
+b.style.width = random/10 + "%";
+b.style.height = random/10 + "%";
+b.style.borderRadius = random/10 + "px";
+div.appendChild(b);
+div.scrollTop = div.scrollHeight;
+}
+
+function done() {
+div.style.filter = "blur(10px)";
+div.style.transform = "scale(0.5) rotate(270deg)";
+setTimeout(close, 800);
+function close() {
+location.reload();
+}
+}
+</script>
+</body>
+</html>
