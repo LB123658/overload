@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Landscape design</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+</head>
+<style>
+* {
+font-family: 'Heebo', sans-serif;
+}
+button {
+height: 7px;
+border: none;
+background: white;
+margin-right: 90%;
+}
+#div {
+position: absolute;
+top: 50%;
+left: 50%;
+width: 500px;
+height: 500px;
+margin-left: -250px;
+margin-top: -250px;
+overflow-x: hidden;
+overflow-y: auto;
+line-height: 0;
+background: lightblue;
+background-image: linear-gradient(to right, lightblue , #6ab0e7);
+border: 7px solid green;
+transition: transform 0.7s, filter 0.7s;
+transform: rotate(270deg) scale(1);
+animation: load 2s;
+}
+::-webkit-scrollbar {
+display: none;
+}
+@keyframes load {
+0% {filter: blur(10px); transform: rotate(270deg) scale(0.5);}
+100% {filter: blur(0px); transform: rotate(270deg) scale(1);}
+}
+a {
+font-size: 25px;
+text-decoration: none;
+color: green;
+font-weight: bold;
+position: absolute;
+top: 20px;
+left: 20px;
+transition: transform 0.15s;
+}
+a:hover {
+transform: scale(1.09);
+text-decoration: underline;
+}
+#controls {
+position: absolute;
+top: 100px;
+left: 0px;
+width: 150px;
+}
+#controls button {
+width: 100%;
+height: 40px;
+border-radius: 0px 20px 20px 0px;
+border: none;
+font-size: 17px;
+color: green;
+background: #e6f0e4;
+margin-bottom: 5px;
+}
+#controls button:hover {
+cursor: pointer;
+background: #b5d6b6;
+}
+#controls button:focus {
+cursor: pointer;
+background: #7dca65;
+}
+button span {
+float: left;
+}
+@media screen and (max-width: 820px) {
+  #controls {
+    position: absolute;
+    top: 680px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+  }
+  #controls button {
+    width: 100%;
+    border-radius: 0px;
+    float: left;
+    overflow: hidden;
+  }
+}
+</style>
+<body>
+<a href="#">LANDSCAPE DESIGN</a>
+
+<div id="controls">
+<button onclick="stop()" title="Stop animation"><span class="material-icons" style="color:green">stop</span> STOP</button>
+
+<button onclick="less()" title="Create downhill"><span class="material-icons" style="color:green">south</span>DOWNHILL</button>
+<button onclick="more()" title="Create uphill"><span class="material-icons" style="color:green">north</span>UPHILL</button>
+
+<br><br>
+<button onclick="link()" title="Get a link to your animation"><span class="material-icons" style="color:green">link</span>GET LINK</button>
+<button onclick="saveFot(landscapeCode, text/html)" title="Download animation"><span class="material-icons" style="color:green">download</span>DOWNLOAD</button>
+<button onclick="share()"title="Share this page"><span class="material-icons" style="color:green">share</span> SHARE</button>
+<button onclick="location.reload()" title="New animation"><span class="material-icons" style="color:green">refresh</span> RELOAD</button>
+</div>
+
+<div id="div"></div>
+<script>
+var div = document.getElementById("div");
+var t = "0";
+document.body.onkeyup = function(e){  
+    if (e.keyCode == 37) {
+        less();
+    } else if (e.keyCode == 39) {
+        more();
+    } 
+}
+function less() {
+var end = t.length - 1;
+t = t.slice(0, end);
+}
+function more() {
+t = t + "0";
+}
+
+var g = setInterval(graph, 80);
+function graph() {
+var b = document.createElement("button");
+b.style.width = t.length + "%";
+b.style.backgroundImage = "linear-gradient(to right, green , grey)";
+div.appendChild(b);
+div.scrollTop = div.scrollHeight;
+}
+
+function stop() {
+clearInterval(g);
+}
+function link() {
+var projectUrl = "data:text/html,<!DOCTYPE html><html><title>Personal Landscape Project</title><head>" + document.head.innerHTML.replace(/\n/g,"");
+ + "</head><body><a href='https://lb123658.github.io/pattern/design' target='_blank'>LANDSCAPE DESIGN</a><div id='div'>" + div.innerHTML + "</div></body></html>";
+window.open(projectUrl, "_blank");
+}
+function share() {
+window.open("mailto:?title=Online Landscape Design&body=Create computer generated hills and mountains with this website. Try it out at lb123658.github.io/pattern/design.", "_blank");
+}
+var landscapeCode = "<!DOCTYPE html><html><title>Personal Landscape Project</title><head>" + document.head.innerHTML.replace(/\n/g,"");
+ + "</head><body><a href='https://lb123658.github.io/patterns/design' target='_blank'>LANDSCAPE DESIGN</a><div id='div'>" + div.innerHTML + "</div></body></html>";
+
+function saveFot(textToWrite, fileNameToSaveAs)
+    {
+    	var textFileAsBlob = new Blob([textToWrite], {type: file.value}); 
+    	var downloadLink = document.createElement("a");
+    	downloadLink.download = fileNameToSaveAs;
+    	downloadLink.innerHTML = "Download File";
+    	if (window.webkitURL != null)
+    	{
+    		// Chrome allows the link to be clicked
+    		// without actually adding it to the DOM.
+    		downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+    	}
+    	else
+    	{
+    		// Firefox requires the link to be added to the DOM
+    		// before it can be clicked.
+    		downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+    		downloadLink.onclick = destroyClickedElement;
+    		downloadLink.style.display = "none";
+    		document.body.appendChild(downloadLink);
+    	}
+    
+    	downloadLink.click();
+} 
+</script>
+</body>
+</html>
