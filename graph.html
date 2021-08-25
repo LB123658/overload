@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Graph experiment</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200&display=swap" rel="stylesheet">
+</head>
+<style>
+* {
+font-family: 'Heebo', sans-serif;
+}
+button {
+height: 7px;
+border: none;
+background: white;
+margin-right: 90%;
+}
+#div {
+position: absolute;
+top: 50%;
+left: 50%;
+width: 500px;
+height: 500px;
+margin-left: -250px;
+margin-top: -250px;
+overflow-x: hidden;
+overflow-y: auto;
+line-height: 0;
+background: red;
+border: 7px solid red;
+transition: transform 0.7s, filter 0.7s;
+transform: rotate(270deg) scale(1);
+animation: load 2s;
+}
+::-webkit-scrollbar {
+display: none;
+}
+@keyframes load {
+0% {filter: blur(10px); transform: rotate(270deg) scale(0.5);}
+100% {filter: blur(0px); transform: rotate(270deg) scale(1);}
+}
+a {
+font-size: 25px;
+text-decoration: none;
+color: black;
+font-weight: bold;
+position: absolute;
+top: 20px;
+left: 20px;
+transition: transform 0.15s;
+}
+a:hover {
+transform: scale(1.09);
+text-decoration: underline;
+}
+textarea {
+position: absolute;
+bottom: 10px;
+left: 50%;
+width: 507px;
+margin-left: -250px;
+height: 80px;
+border: 2px solid black;
+font-size: 20px;
+}
+textarea:focus {
+outline: none;
+border: 2px solid red;
+}
+</style>
+<body onload="go()">
+<a href="#" onclick="done()">STOP GRAPHING</a>
+<div id="div"></div>
+<textarea placeholder="Type here and watch the graph..."></textarea>
+<script>
+var div = document.getElementById("div");
+var t = document.getElementsByTagName("textarea")[0];
+
+var g = setInterval(graph, 80);
+function graph() {
+var b = document.createElement("button");
+b.style.width = t.value.length + "%";
+div.appendChild(b);
+div.scrollTop = div.scrollHeight;
+}
+
+function done() {
+clearInterval(g);
+}
+</script>
+</body>
+</html>
